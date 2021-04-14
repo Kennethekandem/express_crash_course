@@ -5,6 +5,10 @@ const logger = require("./middelware/logger");
 
 const app = express();
 
+// body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
 // init middleware
 // app.use(logger);
 
@@ -14,6 +18,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "public")));
 
+// members API routes
 app.use('/api/members', require('./routes/api/members'));
 
 const port = process.env.PORT || 5000;
